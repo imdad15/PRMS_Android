@@ -1,10 +1,16 @@
 package sg.edu.nus.iss.phoenix.core.android.controller;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.FragmentActivity;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+
 
 import sg.edu.nus.iss.phoenix.core.android.ui.MainScreen;
 import sg.edu.nus.iss.phoenix.radioprogram.entity.RadioProgram;
+import sg.edu.nus.iss.phoenix.user.android.ui.UserScreen;
 
 public class MainController {
     private static Application app = null;
@@ -24,6 +30,14 @@ public class MainController {
         app.startActivity(intent);
     }
 
+    public static void hideKeyboard(FragmentActivity activity) {
+        View view = activity.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager inputManager = (InputMethodManager) activity.getSystemService(
+                    Context.INPUT_METHOD_SERVICE);
+            inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+    }
     public void startUseCase(String username) {
         this.username = username;
 
@@ -59,4 +73,6 @@ public class MainController {
     public void selectedProgram(RadioProgram rpSelected) {
         startUseCase(username);
     }
+
+
 }

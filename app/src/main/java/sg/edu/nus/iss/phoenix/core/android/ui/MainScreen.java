@@ -14,6 +14,7 @@ public class MainScreen extends AppCompatActivity {
     private Button mbtn_radio_program;
     private Button mbtn_schedule;
     private Button mbtn_logout;
+    private Button mbtn_users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,17 @@ public class MainScreen extends AppCompatActivity {
             }
 
         });
+
+        mbtn_users = (Button) findViewById(R.id.button_user) ;
+
+        mbtn_users.setOnClickListener(new View.OnClickListener() {
+            // The code in this method will be executed when the numbers category is clicked on.
+            @Override
+            public void onClick(View view) {
+                ControlFactory.getUserController().startUseCase();
+            }
+        });
+
 
         // Log out  - Back to PRMS  Activity - Pre Login Page
         mbtn_logout = (Button) findViewById(R.id.btnLogout);
