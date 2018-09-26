@@ -79,42 +79,6 @@ public class UserListScreen extends AppCompatActivity {
     }
 
 
-
-
-
-  /*  @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu options from the res/menu/menu_editor.xml file.
-        // This adds menu items to the app bar.
-        getMenuInflater().inflate(R.menu.menu_schedule, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // User clicked on a menu option in the app bar overflow menu
-        switch (item.getItemId()) {
-            // Respond to a click on the "View" menu option
-            case R.id.action_view:
-                if (selectedUser == null) {
-                    // Prompt for the selection of a radio program.
-                    Toast.makeText(this, "Select a Schedule first! Use arrow keys on emulator", Toast.LENGTH_SHORT).show();
-                    Log.v(TAG, "There is no selected Schedule.");
-                }
-                else {
-                    Log.v(TAG, "Viewing Schedule: " + selectedUser.getProgramName() + "...");
-                    ControlFactory.getScheduleController().selectSchedule(selectedUser);
-                }
-        }
-
-        return true;
-    }*/
-
-  /*  @Override
-    public void onBackPressed() {
-        ControlFactory.getProgramController().maintainedProgram();
-    } */
-
     @Override
     protected void onResume() {
         super.onResume();

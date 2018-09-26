@@ -39,4 +39,10 @@
     <string name="action_delete">Delete</string>
     <string name="action_select">Select</string>
 
+    <string-array name="user_roles">
+        <item>Manager</item>
+        <item>Presenter</item>
+        <item>Producer</item>
+        <item>Admin</item>
+    </string-array>
 </resources>
