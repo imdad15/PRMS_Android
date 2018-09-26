@@ -84,6 +84,20 @@ public class CreateUserDelegate extends AsyncTask<User, Void, Boolean> {
             json.put("siteLink", params[0].getSiteLink());
 
 
+            /*JSONArray rolesArray = new JSONArray();
+            List<Role> roles = params[0].getRoles();
+            JSONObject obj = new JSONObject();
+            obj.put("role", roles);
+            for(Role tempRole: roles)
+            {
+
+                ;
+
+                rolesArray.put(tempRole);
+            }*/
+           /* json.put("address", params[0].getAddress());*/
+            // json.put("roles", rolesArray);
+            // json.accumulate("roles", params[0].getRoles());
             Log.v("Roles" , params[0].getRoles().get(0).getRole());
 
 

@@ -40,23 +40,12 @@ public class MaintainUserController {
     }
 
 
-    /**
-     * It is a use case to pass the details of specific user to the screen.
-     * @param selectedUser
-     */
-
     public void startUseCaseWithSelectedUser(User selectedUser) {
         this.user = null;
         this.selectedUser = selectedUser;
         setSelectedUser(selectedUser);
         selectCreateUser();
     }
-
-
-    /**
-     * It is used to display a list of users on the User List screen.
-     * @param userListScreen
-     */
 
     public void onDisplayUserList(UserListScreen userListScreen) {
         this.userListScreen = userListScreen;
