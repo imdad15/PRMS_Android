@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="sg.edu.nus.iss.phoenix.user.android.ui.UserScreen">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="User Id:"
+        tools:text="User Id:"
+        android:id="@+id/tv1"/>
+    <EditText
+        android:id="@+id/user_id_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="none"
+        android:layout_below="@+id/tv1"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="User Name"
+        tools:text="User Name:"
+        android:id="@+id/tv2"
+        android:layout_below="@+id/user_id_text"/>
+
+    <EditText
+        android:id="@+id/user_name_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv2"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        tools:text="Password:"
+        android:id="@+id/tv3"
+        android:layout_below="@+id/user_name_text"/>
+
+    <EditText
+        android:id="@+id/password_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:layout_below="@+id/tv3"
+        android:enabled="false"/>
+
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Change Password"
+        android:id="@+id/showpassword"
+        android:layout_below="@+id/password_text"
+        />
+
+
+
+
+    <!--<TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Date of Joining:"
+        tools:text="Date of Joining:"
+        android:id="@+id/tv2"
+        android:layout_below="@id/user_name_text"/>
+    <EditText
+        android:id="@+id/user_name_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv2"/>-->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Date of Joining:"
+        tools:text="Date of Joining:"
+        android:id="@+id/dojlabel"
+        android:layout_below="@+id/showpassword"
+        android:visibility="gone"   />
+
+    <EditText
+        android:id="@+id/doj_edit_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dojlabel"
+        android:visibility="gone"/>
+
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Address:"
+        tools:text="Address :"
+        android:id="@+id/addresslabel"
+        android:layout_below="@+id/doj_edit_text_view"
+        android:visibility="gone"/>
+
+    <EditText
+        android:id="@+id/address_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="3"
+        android:layout_below="@+id/addresslabel"
+        android:visibility="gone"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Site Link:"
+        tools:text="Site Link:"
+        android:id="@+id/siteLinklabel"
+        android:layout_below="@+id/address_text"
+        android:visibility="gone"/>
+
+    <EditText
+        android:id="@+id/sitelink_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/siteLinklabel"
+        android:visibility="gone"/>
+
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:id="@+id/rolesView"
+        android:layout_centerHorizontal="true"
+        android:choiceMode="multipleChoice"
+        android:layout_below="@+id/sitelink_text">
+
+    </ListView>
+
+
+
+
+
+</RelativeLayout>
