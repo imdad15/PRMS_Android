@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        tools:context=".maintainschedule.android.ui.ScheduleScreen">
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Radio Program Name"
+            tools:text="Name" />
+        <EditText
+            android:id="@+id/maintain_schedule_program_name_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Radio Program Name" />
+
+
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Duration"
+            tools:text="Duration" />
+
+        <EditText
+            android:id="@+id/maintain_schedule_program_duration_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="8" />
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Presenter"
+            tools:text="Presenter" />
+
+        <EditText
+            android:id="@+id/maintain_schedule_program_presenter_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Producer"
+            tools:text="Producer" />
+        <EditText
+            android:id="@+id/maintain_schedule_program_producer_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            tools:text="Date" />
+        <EditText
+            android:id="@+id/maintain_schedule_program_date_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="StartTime"
+            tools:text="StartTime" />
+        <EditText
+            android:id="@+id/maintain_schedule_program_start_time_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="AssignedBy"
+            tools:text="AssignedBy" />
+        <EditText
+            android:id="@+id/maintain_schedule_assigned_by_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+    </LinearLayout>
+
+</ScrollView>
+
+
+
+

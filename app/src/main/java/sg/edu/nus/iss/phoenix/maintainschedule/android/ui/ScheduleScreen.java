@@ -35,9 +35,9 @@ public class ScheduleScreen extends AppCompatActivity {
     private EditText mDateEditText;
     private EditText mStartTimeEditText;
     private EditText mAssignedByEditText;
-    private Button selectRadioProgramButton;
-    private Button selectPresenterButton;
-    private Button selectProducerButton;
+    private Button mSelectRadioProgramButton;
+    private Button mSelectPresenterButton;
+    private Button mSelectProducerButton;
     //private Menu mMenu;
 
     private ProgramSlot psedit = null;
@@ -64,12 +64,12 @@ public class ScheduleScreen extends AppCompatActivity {
         // Keep the KeyListener for name EditText so as to enable editing after disabling it.
         mRPNameEditTextKeyListener = mRPNameEditText.getKeyListener();
 
-        selectRadioProgramButton = (Button) findViewById(R.id.selectRadioProgram);
-        selectPresenterButton = (Button) findViewById(R.id.selectPresenter);
-        selectProducerButton = (Button) findViewById(R.id.selectProducer);
+        mSelectRadioProgramButton = (Button) findViewById(R.id.selectRadioProgram);
+        mSelectPresenterButton = (Button) findViewById(R.id.selectPresenter);
+        mSelectProducerButton = (Button) findViewById(R.id.selectProducer);
 
 
-        selectRadioProgramButton.setOnClickListener(new View.OnClickListener() {
+        mSelectRadioProgramButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //ControlFactory.getReviewSelectProgramController().startUseCase();
@@ -79,7 +79,7 @@ public class ScheduleScreen extends AppCompatActivity {
             }
         });
 
-        selectPresenterButton.setOnClickListener(new View.OnClickListener() {
+        mSelectPresenterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 reviewSelectUser(REQUEST_CODE_PRESENTER);
@@ -88,7 +88,7 @@ public class ScheduleScreen extends AppCompatActivity {
 
         });
 
-        selectProducerButton.setOnClickListener(new View.OnClickListener() {
+        mSelectProducerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //    ControlFactory.getReviewSelectPresenterProducer().startUseCase();
@@ -218,9 +218,9 @@ public class ScheduleScreen extends AppCompatActivity {
                     mProducerNameEditText.setFocusable(false);
                     mPresenterNameEditText.setFocusable(false);
 
-                    selectRadioProgramButton.setEnabled(false);
-                    selectPresenterButton.setEnabled(false);
-                    selectProducerButton.setEnabled(false);
+                    mSelectRadioProgramButton.setEnabled(false);
+                    mSelectPresenterButton.setEnabled(false);
+                    mSelectProducerButton.setEnabled(false);
 
                 }
                 return true;
