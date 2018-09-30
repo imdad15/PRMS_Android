@@ -1,5 +1,6 @@
 package sg.edu.nus.iss.phoenix.radioprogram.android.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -90,6 +91,10 @@ public class ReviewSelectProgramScreen extends AppCompatActivity {
                     Log.v(TAG, "Selected radio program: " + selectedRP.getRadioProgramName() + "...");
                     ControlFactory.getReviewSelectProgramController().selectProgram(selectedRP);
                 }
+
+                Intent intent = new Intent();
+                setResult();
+                finish();
         }
 
         return true;
@@ -98,6 +103,7 @@ public class ReviewSelectProgramScreen extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         ControlFactory.getReviewSelectProgramController().selectCancel();
+        super.onBackPressed();
     }
 
     public void showPrograms(List<RadioProgram> radioPrograms) {

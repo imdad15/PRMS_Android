@@ -91,6 +91,7 @@ public class ReviewSelectScheduleScreen extends AppCompatActivity {
                     Log.v(TAG, "Selected radio program: " + selectedPS.getRadioProgramName() + "...");
                     ControlFactory.getReviewSelectMaintainScheduleController().selectSchedule(selectedPS);
                 }
+                finish();
         }
 
         return true;

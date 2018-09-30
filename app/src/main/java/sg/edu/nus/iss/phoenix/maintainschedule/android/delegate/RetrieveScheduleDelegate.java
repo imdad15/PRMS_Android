@@ -51,7 +51,7 @@ public class RetrieveScheduleDelegate extends  AsyncTask<String,Void,String> {
 
     @Override
     protected String doInBackground(String... params) {
-       String path = "list"+params[0]+params[1];
+       String path = "list"+"/"+params[0]+"/"+params[1];
         Uri builtUri1 = Uri.parse(PRMS_BASE_URL_MAINTAIN_SCHEDULE).buildUpon().build();
         Uri builtUri = Uri.withAppendedPath(builtUri1, path).buildUpon().build();
         Log.v(TAG, builtUri.toString());

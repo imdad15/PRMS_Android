@@ -295,6 +295,17 @@ public class UserScreen extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_editor, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+
+            MenuItem menuItem = menu.findItem(R.id.action_copy);
+            menuItem.setVisible(false);
+
         return true;
     }
 

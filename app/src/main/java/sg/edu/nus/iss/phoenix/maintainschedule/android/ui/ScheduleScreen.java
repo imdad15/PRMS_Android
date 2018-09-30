@@ -1,5 +1,6 @@
 package sg.edu.nus.iss.phoenix.maintainschedule.android.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -18,11 +19,13 @@ import sg.edu.nus.iss.phoenix.core.android.controller.ControlFactory;
 import sg.edu.nus.iss.phoenix.maintainschedule.entity.ProgramSlot;
 import sg.edu.nus.iss.phoenix.maintainschedule.android.ui.ScheduleScreen;
 import sg.edu.nus.iss.phoenix.maintainschedule.entity.ProgramSlot;
+import sg.edu.nus.iss.phoenix.radioprogram.android.ui.ReviewSelectProgramScreen;
 import sg.edu.nus.iss.phoenix.radioprogram.entity.RadioProgram;
 
-public class ScheduleScreen extends AppCompatActivity  {
+public class ScheduleScreen extends AppCompatActivity {
     // Tag for logging
     private static final String TAG = ScheduleScreen.class.getName();
+    private static final int REQUEST_CODE_PS = 2;
 
     private EditText mRPNameEditText;
     private EditText mProducerNameEditText;
@@ -45,38 +48,36 @@ public class ScheduleScreen extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_program_slot);
         ControlFactory.getMainController().selectedSchedule(null);
-        Log.v("ScheduleScreen:onCreate","Log2");
+        Log.v("ScheduleScreen:onCreate", "Log2");
 
         // Find all relevant views that we will need to read user input from
         mRPNameEditText = (EditText) findViewById(R.id.maintain_schedule_program_name_text_view);
 
         mDurationEditText = (EditText) findViewById(R.id.maintain_schedule_program_duration_text_view);
-        mProducerNameEditText=(EditText) findViewById(R.id.maintain_schedule_program_producer_text_view);
-        mPresenterNameEditText=(EditText) findViewById(R.id.maintain_schedule_program_presenter_text_view);;
-        mDateEditText=(EditText) findViewById(R.id.maintain_schedule_program_date_text_view);;
-        mStartTimeEditText=(EditText) findViewById(R.id.maintain_schedule_program_start_time_text_view);;
-        mAssignedByEditText=(EditText) findViewById(R.id.maintain_schedule_assigned_by_text_view);;
+        mProducerNameEditText = (EditText) findViewById(R.id.maintain_schedule_program_producer_text_view);
+        mPresenterNameEditText = (EditText) findViewById(R.id.maintain_schedule_program_presenter_text_view);
+        ;
+        mDateEditText = (EditText) findViewById(R.id.maintain_schedule_program_date_text_view);
+        ;
+        mStartTimeEditText = (EditText) findViewById(R.id.maintain_schedule_program_start_time_text_view);
+        ;
+        mAssignedByEditText = (EditText) findViewById(R.id.maintain_schedule_assigned_by_text_view);
+        ;
 
         // Keep the KeyListener for name EditText so as to enable editing after disabling it.
         mRPNameEditTextKeyListener = mRPNameEditText.getKeyListener();
 
-        selectRadioProgramButton =(Button)findViewById(R.id.selectRadioProgram);
-        selectPresenterButton=(Button)findViewById(R.id.selectPresenter);
-        selectProducerButton=(Button)findViewById(R.id.selectProducer);
+        selectRadioProgramButton = (Button) findViewById(R.id.selectRadioProgram);
+        selectPresenterButton = (Button) findViewById(R.id.selectPresenter);
+        selectProducerButton = (Button) findViewById(R.id.selectProducer);
 
 
         selectRadioProgramButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ControlFactory.getReviewSelectProgramController().startUseCase();
-                RadioProgram rp = ControlFactory.getMainController().selectedProgram();
-                if (rp != null) {
-                    mRPNameEditText.setText(rp.getRadioProgramName());
-                    mDurationEditText.setText(rp.getRadioProgramDuration());
-                    mRPNameEditText.setFocusable(false);
-                    mDurationEditText.setFocusable(false);
-
-                }
+                //ControlFactory.getReviewSelectProgramController().startUseCase();
+                Intent intent = new Intent(ScheduleScreen.this, ReviewSelectProgramScreen.class);
+                startActivityForResult(intent, REQUEST_CODE_PS);
 
             }
         });
@@ -84,12 +85,12 @@ public class ScheduleScreen extends AppCompatActivity  {
         selectPresenterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-        //        ControlFactory.getReviewSelectPresenterProducer().startUseCase();
-        //        Presenter presenter = ControlFactory.getMainController().selectedPresenter();
-        //        if (presenter != null) {
-        //            mPresenterNameEditText.setText(presenter.getPresenterName());
-        //            mPresenterNameEditText.setFocusable(false);
-         //       }
+                //        ControlFactory.getReviewSelectPresenterProducer().startUseCase();
+                //        Presenter presenter = ControlFactory.getMainController().selectedPresenter();
+                //        if (presenter != null) {
+                //            mPresenterNameEditText.setText(presenter.getPresenterName());
+                //            mPresenterNameEditText.setFocusable(false);
+                //       }
             }
 
 
@@ -97,18 +98,17 @@ public class ScheduleScreen extends AppCompatActivity  {
 
         selectProducerButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-        //    ControlFactory.getReviewSelectPresenterProducer().startUseCase();
-        //    Producer producer = ControlFactory.getMainController().selectedProducer();
-        //    if (producer != null) {
-        //        mProducerNameEditText.setText(producer.getProducerName());
-        //        mProducerNameEditText.setFocusable(false);
-        //    }
+            public void onClick(View view) {
+                //    ControlFactory.getReviewSelectPresenterProducer().startUseCase();
+                //    Producer producer = ControlFactory.getMainController().selectedProducer();
+                //    if (producer != null) {
+                //        mProducerNameEditText.setText(producer.getProducerName());
+                //        mProducerNameEditText.setFocusable(false);
+                //    }
 
 
-        }
+            }
         });
-
 
 
     }
@@ -117,6 +117,22 @@ public class ScheduleScreen extends AppCompatActivity  {
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         ControlFactory.getMaintainScheduleController().onDisplayProgram(this);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE_PS && resultCode == RESULT_OK) {
+            RadioProgram rp = ControlFactory.getMainController().selectedProgram();
+            if (rp != null) {
+                mRPNameEditText.setText(rp.getRadioProgramName());
+                mDurationEditText.setText(rp.getRadioProgramDuration());
+                mRPNameEditText.setFocusable(false);
+                mDurationEditText.setFocusable(false);
+            }
+
+        }
     }
 
     @Override
@@ -193,9 +209,12 @@ public class ScheduleScreen extends AppCompatActivity  {
                     mProducerNameEditText.setFocusable(false);
                     mPresenterNameEditText.setFocusable(false);
 
-                    selectRadioProgramButton.setEnabled(false);;
-                    selectPresenterButton.setEnabled(false);;
-                    selectProducerButton.setEnabled(false);;
+                    selectRadioProgramButton.setEnabled(false);
+                    ;
+                    selectPresenterButton.setEnabled(false);
+                    ;
+                    selectProducerButton.setEnabled(false);
+                    ;
 
                 }
                 return true;
@@ -229,13 +248,13 @@ public class ScheduleScreen extends AppCompatActivity  {
 
     }
 
-     public void editSchedule(ProgramSlot psedit) {
+    public void editSchedule(ProgramSlot psedit) {
         this.psedit = psedit;
         if (psedit != null) {
             mRPNameEditText.setText(psedit.getRadioProgramName(), TextView.BufferType.EDITABLE);
             mDurationEditText.setText(psedit.getDuration(), TextView.BufferType.EDITABLE);
-            mProducerNameEditText.setText(psedit.getProducerName(),TextView.BufferType.EDITABLE);
-            mPresenterNameEditText.setText(psedit.getPresenterName(),TextView.BufferType.EDITABLE);
+            mProducerNameEditText.setText(psedit.getProducerName(), TextView.BufferType.EDITABLE);
+            mPresenterNameEditText.setText(psedit.getPresenterName(), TextView.BufferType.EDITABLE);
             mRPNameEditText.setKeyListener(null);
 
         }
