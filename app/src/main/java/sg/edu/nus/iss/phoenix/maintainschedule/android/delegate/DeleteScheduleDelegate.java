@@ -92,11 +92,11 @@ public class DeleteScheduleDelegate extends AsyncTask<ProgramSlot,Void,Boolean> 
 
             JSONObject json = new JSONObject();
             try {
-                json.put("radioProgramName", params[0].getRadioProgramName());
+                json.put("programName", params[0].getRadioProgramName());
                 json.put("producer", params[0].getProducerName());
                 json.put("presenter", params[0].getPresenterName());
                 json.put("duration",params[0].getDuration());
-                json.put("date",params[0].getDate());
+                json.put("dateOfProgram",params[0].getDate());
                 json.put("startTime",params[0].getStartTime());
                 json.put("assignedBy",params[0].getAssignedBy());
             } catch (JSONException e) {
@@ -110,7 +110,7 @@ public class DeleteScheduleDelegate extends AsyncTask<ProgramSlot,Void,Boolean> 
                 httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setDoInput(true);
                 httpURLConnection.setInstanceFollowRedirects(false);
-                httpURLConnection.setRequestMethod("DELETE");
+                httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setRequestProperty("Content-Type", "application/json; charset=utf8");
                 httpURLConnection.setDoOutput(true);
                 dos = new DataOutputStream(httpURLConnection.getOutputStream());

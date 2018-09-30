@@ -1,9 +1,8 @@
-package sg.edu.nus.iss.phoenix.user.ui;
+package sg.edu.nus.iss.phoenix.user.android.ui;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -31,7 +30,7 @@ public class ReviewSelectUserScreen extends AppCompatActivity {
         mUserListview = (ListView) findViewById(R.id.listview_user);
         mErrorMessageDisplay = (TextView) findViewById(R.id.tv_error_message_display);
         mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
-        String role = "producer";//getIntent().getStringExtra("role");
+        String role = getIntent().getStringExtra("role");
         ControlFactory.getReviewSelectPresenterProducerController().onDisplay(this,role);
     }
 
@@ -47,7 +46,11 @@ public class ReviewSelectUserScreen extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 User user = (User) adapterView.getItemAtPosition(position);
                 selectedUser = user;
-                ControlFactory.getReviewSelectPresenterProducerController().setSelectedUser(user);
+                Intent intent = new Intent();
+                intent.putExtra("selected_user",selectedUser.getName());
+                setResult(RESULT_OK, intent);
+                finish();
+                //ControlFactory.getReviewSelectPresenterProducerController().setSelectedUser(user);
             }
         });
 
@@ -69,7 +72,6 @@ public class ReviewSelectUserScreen extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // LoginScreen does not currently support Back button.
-        return;
+        super.onBackPressed();
     }
 }

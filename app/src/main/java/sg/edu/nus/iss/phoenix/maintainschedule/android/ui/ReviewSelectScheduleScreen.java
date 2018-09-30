@@ -1,5 +1,6 @@
 package sg.edu.nus.iss.phoenix.maintainschedule.android.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -91,6 +92,10 @@ public class ReviewSelectScheduleScreen extends AppCompatActivity {
                     Log.v(TAG, "Selected radio program: " + selectedPS.getRadioProgramName() + "...");
                     ControlFactory.getReviewSelectMaintainScheduleController().selectSchedule(selectedPS);
                 }
+                Intent intent = new Intent();
+                intent.putExtra("radio_program", selectedPS.getRadioProgramName());
+                intent.putExtra("duration", selectedPS.getDuration());
+                setResult(RESULT_OK, intent);
                 finish();
         }
 

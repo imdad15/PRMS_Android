@@ -1,4 +1,4 @@
-package sg.edu.nus.iss.phoenix.user.ui;
+package sg.edu.nus.iss.phoenix.user.android.ui;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

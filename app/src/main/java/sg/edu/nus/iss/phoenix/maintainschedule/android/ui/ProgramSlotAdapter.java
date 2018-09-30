@@ -29,7 +29,7 @@ public class ProgramSlotAdapter extends ArrayAdapter<ProgramSlot> {
         View listItemView = convertView;
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.activity_program_slot, parent, false);
+                    R.layout.activity_program_slot_view, parent, false);
         }
         //    Word currentWord = getItem(position);
         ProgramSlot currentPS = getItem(position);

@@ -26,6 +26,8 @@ public class User {
 
     public User(String name, ArrayList<Role> roles){
         this.name = name;
+        if(this.roles == null)
+            this.roles = new ArrayList<>();
         this.roles.addAll(roles);
     }
 

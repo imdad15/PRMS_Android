@@ -4,7 +4,7 @@ import sg.edu.nus.iss.phoenix.authenticate.android.controller.LoginController;
 import sg.edu.nus.iss.phoenix.maintainschedule.android.controller.ReviewSelectMaintainScheduleController;
 import sg.edu.nus.iss.phoenix.radioprogram.android.controller.ProgramController;
 import sg.edu.nus.iss.phoenix.radioprogram.android.controller.ReviewSelectProgramController;
-import sg.edu.nus.iss.phoenix.user.controller.ReviewSelectUserController;
+import sg.edu.nus.iss.phoenix.user.android.controller.ReviewSelectUserController;
 import  sg.edu.nus.iss.phoenix.maintainschedule.android.controller.MaintainScheduleController;
 import sg.edu.nus.iss.phoenix.user.android.controller.MaintainUserController;
 

@@ -52,6 +52,7 @@ public class ReviewSelectProgramScreen extends AppCompatActivity {
                 // Log.v(TAG, "Radio program name is " + rp.getRadioProgramName());
                 selectedRP = rp;
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
                 // your stuff
@@ -86,15 +87,20 @@ public class ReviewSelectProgramScreen extends AppCompatActivity {
                     // Prompt for the selection of a radio program.
                     Toast.makeText(this, "Select a radio program first! Use arrow keys on emulator", Toast.LENGTH_SHORT).show();
                     Log.v(TAG, "There is no selected radio program.");
-                }
-                else {
+                } else {
                     Log.v(TAG, "Selected radio program: " + selectedRP.getRadioProgramName() + "...");
                     ControlFactory.getReviewSelectProgramController().selectProgram(selectedRP);
                 }
 
                 Intent intent = new Intent();
-                intent.putExtra("program_name", selectedRP.getRadioProgramName());
-                intent.putExtra("duration", selectedRP.getRadioProgramDuration());
+                if (selectedRP != null) {
+                    if (!selectedRP.getRadioProgramName().isEmpty()) {
+                        intent.putExtra("program_name", selectedRP.getRadioProgramName());
+                    }
+                    if (!selectedRP.getRadioProgramDuration().isEmpty()) {
+                        intent.putExtra("duration", selectedRP.getRadioProgramDuration());
+                    }
+                }
                 setResult(RESULT_OK, intent);
                 finish();
         }

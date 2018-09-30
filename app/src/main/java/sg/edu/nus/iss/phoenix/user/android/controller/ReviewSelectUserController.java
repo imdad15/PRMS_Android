@@ -1,14 +1,14 @@
-package sg.edu.nus.iss.phoenix.user.controller;
+package sg.edu.nus.iss.phoenix.user.android.controller;
 
 import android.content.Intent;
 
 import sg.edu.nus.iss.phoenix.authenticate.android.ui.LoginScreen;
 import sg.edu.nus.iss.phoenix.core.android.controller.MainController;
 import sg.edu.nus.iss.phoenix.radioprogram.android.ui.ReviewSelectProgramScreen;
-import sg.edu.nus.iss.phoenix.user.delegate.ReviewSelectUserDelegate;
+import sg.edu.nus.iss.phoenix.user.android.delegate.ReviewSelectUserDelegate;
 import sg.edu.nus.iss.phoenix.user.entity.User;
 import sg.edu.nus.iss.phoenix.user.entity.Users;
-import sg.edu.nus.iss.phoenix.user.ui.ReviewSelectUserScreen;
+import sg.edu.nus.iss.phoenix.user.android.ui.ReviewSelectUserScreen;
 
 public class ReviewSelectUserController {
 
@@ -37,6 +37,5 @@ public class ReviewSelectUserController {
         Intent intent = new Intent(MainController.getApp(), LoginScreen.class);
         intent.putExtra("role", role);
         intent.putExtra("username", user.getName());
-        MainController.displayScreen(intent);
     }
 }

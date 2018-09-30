@@ -92,11 +92,11 @@ public class RetrieveScheduleDelegate extends  AsyncTask<String,Void,String> {
 
                 for (int i = 0; i < psArray.length(); i++) {
                     JSONObject psJson = psArray.getJSONObject(i);
-                    String radioProgramName = psJson.getString("radioProgramName");
-                    String radioProgramDuration = psJson.getString("radioProgramDuration");
-                    String radioProgramPresenter = psJson.getString("radioProgramPresenter");
-                    String radioProgramProducer = psJson.getString("radioProgramProducer");
-                    String date = psJson.getString("date");
+                    String radioProgramName = psJson.getString("programName");
+                    String radioProgramDuration = psJson.getString("duration");
+                    String radioProgramPresenter = psJson.getString("presenter");
+                    String radioProgramProducer = psJson.getString("producer");
+                    String date = psJson.getString("dateOfProgram");
                     String startTime = psJson.getString("startTime");
                     String assignedBy = psJson.getString("assignedBy");
 
