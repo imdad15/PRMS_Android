@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import sg.edu.nus.iss.phoenix.R;
+import sg.edu.nus.iss.phoenix.authenticate.android.ui.LoginScreen;
 import sg.edu.nus.iss.phoenix.core.android.controller.ControlFactory;
 import sg.edu.nus.iss.phoenix.maintainschedule.entity.ProgramSlot;
 import sg.edu.nus.iss.phoenix.radioprogram.android.ui.ReviewSelectProgramScreen;
@@ -48,7 +49,6 @@ public class ScheduleScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_program_slot);
         ControlFactory.getMainController().selectedSchedule(null);
-        Log.v("ScheduleScreen:onCreate", "Log2");
 
         // Find all relevant views that we will need to read user input from
         mRPNameEditText = (EditText) findViewById(R.id.maintain_schedule_program_name_text_view);
@@ -198,32 +198,6 @@ public class ScheduleScreen extends AppCompatActivity {
                 Log.v(TAG, "Canceling creating/editing program slots...");
                 ControlFactory.getMaintainScheduleController().selectCancelCreateEditSchedule();
                 return true;
-
-            case R.id.action_copy:
-                Log.v(TAG, "Copying Program Slot: ");
-                ControlFactory.getMaintainScheduleController().isCopyOperation(true);
-                ControlFactory.getReviewSelectMaintainScheduleController().startUseCase();
-                ProgramSlot ps = ControlFactory.getMainController().selectedSchedule();
-                ControlFactory.getMaintainScheduleController().isCopyOperation(false);
-
-                if (ps != null) {
-                    mRPNameEditText.setText(ps.getRadioProgramName(), TextView.BufferType.EDITABLE);
-                    mDurationEditText.setText(ps.getDuration(), TextView.BufferType.EDITABLE);
-                    mProducerNameEditText.setText(ps.getProducerName(), TextView.BufferType.EDITABLE);
-                    mPresenterNameEditText.setText(ps.getPresenterName(), TextView.BufferType.EDITABLE);
-                    mRPNameEditText.setKeyListener(null);
-
-                    mRPNameEditText.setFocusable(false);
-                    mDurationEditText.setFocusable(false);
-                    mProducerNameEditText.setFocusable(false);
-                    mPresenterNameEditText.setFocusable(false);
-
-                    mSelectRadioProgramButton.setEnabled(false);
-                    mSelectPresenterButton.setEnabled(false);
-                    mSelectProducerButton.setEnabled(false);
-
-                }
-                return true;
         }
         return true;
     }
@@ -295,5 +269,13 @@ public class ScheduleScreen extends AppCompatActivity {
         startActivityForResult(intent, requestCode);
     }
 
+    public void setCopiedData() {
+        Intent intent = getIntent();
+        Log.d("TAG", intent.getStringExtra("rp_name"));
+        mRPNameEditText.setText(intent.getStringExtra("rp_name"));
+        mPresenterNameEditText.setText(intent.getStringExtra("presenter"));
+        mProducerNameEditText.setText(intent.getStringExtra("producer"));
+        mDurationEditText.setText(intent.getStringExtra("duration"));
+    }
 
 }

@@ -18,10 +18,5 @@
         android:title="@string/action_delete"
         app:showAsAction="always" />
 
-    <item
-        android:id="@+id/action_copy"
-        android:title="Copy Schedule"
-
-        app:showAsAction="always" />
 
 </menu>

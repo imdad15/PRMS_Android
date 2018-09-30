@@ -2,17 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- android:icon="@drawable/ic_done" -->
     <item
         android:id="@+id/action_view"
         android:title="@string/action_view"
-
         app:showAsAction="always" />
 
     <item
-    android:id="@+id/action_populate"
-    android:title="Populate Schedule"
+        android:id="@+id/action_populate"
+        android:title="Populate Schedule"
+        app:showAsAction="always" />
 
-    app:showAsAction="always" />
+    <item
+        android:id="@+id/action_copy"
+        android:title="Copy"
+        app:showAsAction="always"/>
 
 </menu>

@@ -54,9 +54,7 @@ public class PopulateScreen extends AppCompatActivity  {
         // This adds menu items to the app bar.
         getMenuInflater().inflate(R.menu.menu_editor, menu);
         MenuItem menuItem1 = menu.findItem(R.id.action_delete);
-        MenuItem menuItem2 = menu.findItem(R.id.action_copy);
         menuItem1.setVisible(false);
-        menuItem2.setVisible(false);
         return true;
     }
 

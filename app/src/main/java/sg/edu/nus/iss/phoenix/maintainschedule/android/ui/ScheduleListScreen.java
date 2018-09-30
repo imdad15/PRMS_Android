@@ -1,5 +1,6 @@
 package sg.edu.nus.iss.phoenix.maintainschedule.android.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -17,14 +18,11 @@ import java.util.List;
 
 import sg.edu.nus.iss.phoenix.R;
 import sg.edu.nus.iss.phoenix.core.android.controller.ControlFactory;
-import sg.edu.nus.iss.phoenix.maintainschedule.android.ui.ScheduleListScreen;
-import sg.edu.nus.iss.phoenix.maintainschedule.android.ui.ProgramSlotAdapter;
 import sg.edu.nus.iss.phoenix.maintainschedule.entity.ProgramSlot;
 
 public class ScheduleListScreen extends AppCompatActivity {
     // Tag for logging
     private static final String TAG = ScheduleListScreen.class.getName();
-
 
     private ListView mListView;
     private ProgramSlotAdapter mPSAdapter;
@@ -99,7 +97,21 @@ public class ScheduleListScreen extends AppCompatActivity {
                     Log.v(TAG, "Viewing program slots: " + selectedPS.getRadioProgramName() + "...");
                     ControlFactory.getMaintainScheduleController().selectEditProgramSlot(selectedPS);
                 }
-
+                return true;
+            case R.id.action_copy:
+                if(selectedPS==null){
+                    Toast.makeText(this, "Select a program slot first! Use arrow keys on emulator", Toast.LENGTH_SHORT).show();
+                    Log.v(TAG, "There is no selected program slot.");
+                } else {
+                    Intent intent = new Intent(ScheduleListScreen.this, AnnualListScreen.class);
+                    intent.setAction("Copy");
+                    intent.putExtra("rp_name",selectedPS.getRadioProgramName());
+                    intent.putExtra("presenter", selectedPS.getPresenterName());
+                    intent.putExtra("producer", selectedPS.getProducerName());
+                    intent.putExtra("duration", selectedPS.getDuration());
+                    startActivity(intent);
+                }
+                return true;
         }
     return true;
 

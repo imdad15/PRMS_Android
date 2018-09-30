@@ -2,6 +2,7 @@ package sg.edu.nus.iss.phoenix.maintainschedule.android.controller;
 
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.util.Log;
 
 import java.util.List;
@@ -49,7 +50,6 @@ public class MaintainScheduleController {
 
     public void selectCreateSchedule() {
         psedit = null;
-        Log.v("selectCreateSchedule","Log1");
         Intent intent = new Intent(MainController.getApp(), ScheduleScreen.class);
         MainController.displayScreen(intent);
     }
@@ -65,11 +65,18 @@ public class MaintainScheduleController {
 
     public void onDisplayProgram(ScheduleScreen maintainScheduleScreen) {
         this.scheduleScreen = maintainScheduleScreen;
-        if (psedit == null)
-            maintainScheduleScreen.createProgramSlot();
-        else
-            scheduleScreen.editSchedule(psedit);
+        String action = maintainScheduleScreen.getIntent().getAction();
+        if(!TextUtils.isEmpty(action) && action.equals("Copy")){
+            maintainScheduleScreen.setCopiedData();
+        } else {
+            if (psedit == null)
+                maintainScheduleScreen.createProgramSlot();
+            else
+                scheduleScreen.editSchedule(psedit);
+        }
     }
+
+
 
     public void selectModifySchedule(ProgramSlot ps) {
         new ModifyScheduleDelegate(this).execute(ps);
@@ -108,7 +115,6 @@ public class MaintainScheduleController {
     }
 
     public void selectCancelCreatePopulateSchedule(){
-
         startUseCase();
     }
 
@@ -132,11 +138,6 @@ public class MaintainScheduleController {
 
     public void setWeek(int week){
         week_num = week;
-    }
-
-
-    public boolean isCopyOperation(){
-        return mCopy;
     }
 
     public void isCopyOperation(boolean val){

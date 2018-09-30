@@ -23,23 +23,23 @@ public class WeeklyListScreen extends AppCompatActivity {
         Resources res = getResources();
         String[] week_num = res.getStringArray(R.array.weekcount);
 
-        for (int i = 0; i < week_num.length; i++){
+        for (int i = 0; i < week_num.length; i++) {
 
             int resID = getResources().getIdentifier(week_num[i], "id", getPackageName());
-            Button button=((Button) findViewById(resID));
+            Button button = ((Button) findViewById(resID));
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     Button b = (Button) v;
                     String buttonText = b.getText().toString();
                     String[] result = buttonText.split(" ");
                     ControlFactory.getMaintainScheduleController().setWeek(Integer.parseInt(result[1]));
-                    boolean isCopy = ControlFactory.getMaintainScheduleController().isCopyOperation();
-                    if(!isCopy) {
-                        Intent intent = new Intent(WeeklyListScreen.this, ScheduleListScreen.class);
+                    if ((getIntent().getAction() != null) && getIntent().getAction().equals("Copy")) {
+                        Intent intent = new Intent(WeeklyListScreen.this, ScheduleScreen.class);
+                        passDataIfCopy(intent);
                         startActivity(intent);
-                    }
-                    else{
-                        Intent intent = new Intent(WeeklyListScreen.this, ReviewSelectScheduleScreen.class);
+                        finish();
+                    } else {
+                        Intent intent = new Intent(WeeklyListScreen.this, ScheduleListScreen.class);
                         startActivity(intent);
                     }
                 }
@@ -65,19 +65,12 @@ public class WeeklyListScreen extends AppCompatActivity {
             // Respond to a click on the "View" menu option
             case R.id.action_populate:
 
-                    Intent intent = new Intent(this,PopulateScreen.class);
-                    startActivity(intent);
+                Intent intent = new Intent(this, PopulateScreen.class);
+                startActivity(intent);
         }
 
         return true;
     }
-
-
-
-
-
-
-
 
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
@@ -85,6 +78,16 @@ public class WeeklyListScreen extends AppCompatActivity {
     }
 
 
-
+    public void passDataIfCopy(Intent toSendIntent) {
+        Intent recievedIntent = getIntent();
+        if ((recievedIntent.getAction() != null) && recievedIntent.getAction().equals("Copy")) {
+            Log.d("TAG", recievedIntent.getStringExtra("rp_name"));
+            toSendIntent.setAction("Copy");
+            toSendIntent.putExtra("rp_name", recievedIntent.getStringExtra("rp_name"));
+            toSendIntent.putExtra("presenter", recievedIntent.getStringExtra("presenter"));
+            toSendIntent.putExtra("producer", recievedIntent.getStringExtra("producer"));
+            toSendIntent.putExtra("duration", recievedIntent.getStringExtra("duration"));
+        }
+    }
 
 }

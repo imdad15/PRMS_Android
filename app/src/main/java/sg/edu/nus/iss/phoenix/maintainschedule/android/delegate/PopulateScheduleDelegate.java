@@ -60,6 +60,6 @@ public class PopulateScheduleDelegate extends AsyncTask<String,Void,Boolean> {
                 if (httpURLConnection != null) httpURLConnection.disconnect();
         }
         return new Boolean(success);
-
     }
+
 }

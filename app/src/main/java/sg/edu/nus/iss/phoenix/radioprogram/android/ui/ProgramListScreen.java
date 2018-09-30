@@ -1,15 +1,14 @@
 package sg.edu.nus.iss.phoenix.radioprogram.android.ui;
 
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -63,12 +62,13 @@ public class ProgramListScreen extends AppCompatActivity {
                 RadioProgram rp = (RadioProgram) adapterView.getItemAtPosition(position);
                 // Log.v(TAG, "Radio program name is " + rp.getRadioProgramName());
                 selectedRP = rp;
-                Log.v("ProgramSelectedIndex",String.valueOf(position));
-                if(selectedRP != null )
-                Log.v("ProgramName",selectedRP.getRadioProgramName());
+                Log.v("ProgramSelectedIndex", String.valueOf(position));
+                if (selectedRP != null)
+                    Log.v("ProgramName", selectedRP.getRadioProgramName());
                 else
-                    Log.v("selectedRP is","null");
+                    Log.v("selectedRP is", "null");
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
                 // your stuff
@@ -105,8 +105,7 @@ public class ProgramListScreen extends AppCompatActivity {
                     // Prompt for the selection of a radio program.
                     Toast.makeText(this, "Select a radio program first! Use arrow keys on emulator", Toast.LENGTH_SHORT).show();
                     Log.v(TAG, "There is no selected radio program.");
-                }
-                else {
+                } else {
                     Log.v(TAG, "Viewing radio program: " + selectedRP.getRadioProgramName() + "...");
                     ControlFactory.getProgramController().selectEditProgram(selectedRP);
                 }
