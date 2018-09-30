@@ -17,6 +17,7 @@
     package="sg.edu.nus.iss.phoenix">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-feature android:name="android.hardware.location.gps" />
 
     <application
@@ -38,6 +39,7 @@
         <activity android:name=".radioprogram.android.ui.ProgramListScreen" />
         <activity android:name=".radioprogram.android.ui.MaintainProgramScreen" />
         <activity android:name=".radioprogram.android.ui.ReviewSelectProgramScreen" />
+        <activity android:name=".user.ui.ReviewSelectUserScreen"/>
         <activity android:name=".user.android.ui.UserListScreen" />
         <activity android:name=".user.android.ui.UserScreen" />
         <activity android:name=".maintainschedule.android.ui.ScheduleListScreen" />

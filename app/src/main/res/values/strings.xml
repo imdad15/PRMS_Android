@@ -38,6 +38,7 @@
     <string name="action_save">Save</string>
     <string name="action_delete">Delete</string>
     <string name="action_select">Select</string>
+    <string name="userlist_error">Error in retreiving user list</string>
 
     <string-array name="user_roles">
         <item>Manager</item>

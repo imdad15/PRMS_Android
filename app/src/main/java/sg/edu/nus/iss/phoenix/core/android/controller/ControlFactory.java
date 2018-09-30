@@ -4,6 +4,7 @@ import sg.edu.nus.iss.phoenix.authenticate.android.controller.LoginController;
 import sg.edu.nus.iss.phoenix.maintainschedule.android.controller.ReviewSelectMaintainScheduleController;
 import sg.edu.nus.iss.phoenix.radioprogram.android.controller.ProgramController;
 import sg.edu.nus.iss.phoenix.radioprogram.android.controller.ReviewSelectProgramController;
+import sg.edu.nus.iss.phoenix.user.controller.ReviewSelectUserController;
 import  sg.edu.nus.iss.phoenix.maintainschedule.android.controller.MaintainScheduleController;
 import sg.edu.nus.iss.phoenix.user.android.controller.MaintainUserController;
 
@@ -15,6 +16,7 @@ public class ControlFactory {
     private static MaintainUserController userController = null;
     private static MaintainScheduleController maintainScheduleController = null;
     private static ReviewSelectMaintainScheduleController reviewSelectMaintainScheduleController=null;
+    private static ReviewSelectUserController reviewSelectUserController = null;
 
     public static MainController getMainController() {
         if (mainController == null) mainController = new MainController();
@@ -32,7 +34,8 @@ public class ControlFactory {
     }
 
     public static ReviewSelectProgramController getReviewSelectProgramController() {
-        if (reviewSelectProgramController == null) reviewSelectProgramController = new ReviewSelectProgramController();
+        if (reviewSelectProgramController == null)
+            reviewSelectProgramController = new ReviewSelectProgramController();
         return reviewSelectProgramController;
     }
 
@@ -40,6 +43,13 @@ public class ControlFactory {
         if (userController == null) userController = new MaintainUserController();
         return userController;
     }
+
+    public static ReviewSelectUserController getReviewSelectPresenterProducerController() {
+        if (reviewSelectUserController == null)
+            reviewSelectUserController = new ReviewSelectUserController();
+        return reviewSelectUserController;
+    }
+}
 
     public static MaintainScheduleController getMaintainScheduleController(){
         if(maintainScheduleController== null)
