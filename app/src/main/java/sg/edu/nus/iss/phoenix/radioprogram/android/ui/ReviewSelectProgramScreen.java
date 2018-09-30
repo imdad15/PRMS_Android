@@ -93,7 +93,9 @@ public class ReviewSelectProgramScreen extends AppCompatActivity {
                 }
 
                 Intent intent = new Intent();
-                setResult();
+                intent.putExtra("program_name", selectedRP.getRadioProgramName());
+                intent.putExtra("duration", selectedRP.getRadioProgramDuration());
+                setResult(RESULT_OK, intent);
                 finish();
         }
 

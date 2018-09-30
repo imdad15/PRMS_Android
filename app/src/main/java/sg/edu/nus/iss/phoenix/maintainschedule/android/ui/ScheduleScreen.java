@@ -124,15 +124,19 @@ public class ScheduleScreen extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == REQUEST_CODE_PS && resultCode == RESULT_OK) {
-            RadioProgram rp = ControlFactory.getMainController().selectedProgram();
-            if (rp != null) {
-                mRPNameEditText.setText(rp.getRadioProgramName());
-                mDurationEditText.setText(rp.getRadioProgramDuration());
-                mRPNameEditText.setFocusable(false);
-                mDurationEditText.setFocusable(false);
+            String programName = data.getStringExtra("program_name");
+            String duration = data.getStringExtra("duration");
+            //RadioProgram rp = ControlFactory.getMainController().selectedProgram();
+            if (!programName.isEmpty()) {
+                mRPNameEditText.setText(programName);
             }
-
+            if (!duration.isEmpty()) {
+                mDurationEditText.setText(duration);
+            }
+            mRPNameEditText.setFocusable(false);
+            mDurationEditText.setFocusable(false);
         }
+
     }
 
     @Override
