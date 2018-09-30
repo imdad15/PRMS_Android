@@ -63,6 +63,11 @@ public class ProgramListScreen extends AppCompatActivity {
                 RadioProgram rp = (RadioProgram) adapterView.getItemAtPosition(position);
                 // Log.v(TAG, "Radio program name is " + rp.getRadioProgramName());
                 selectedRP = rp;
+                Log.v("ProgramSelectedIndex",String.valueOf(position));
+                if(selectedRP != null )
+                Log.v("ProgramName",selectedRP.getRadioProgramName());
+                else
+                    Log.v("selectedRP is","null");
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -85,6 +90,8 @@ public class ProgramListScreen extends AppCompatActivity {
         // Inflate the menu options from the res/menu/menu_editor.xml file.
         // This adds menu items to the app bar.
         getMenuInflater().inflate(R.menu.menu_list, menu);
+        MenuItem menuItem = menu.findItem(R.id.action_populate);
+        menuItem.setVisible(false);
         return true;
     }
 
