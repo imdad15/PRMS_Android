@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager;
 
 
 import sg.edu.nus.iss.phoenix.core.android.ui.MainScreen;
+import sg.edu.nus.iss.phoenix.maintainschedule.entity.ProgramSlot;
 import sg.edu.nus.iss.phoenix.radioprogram.entity.RadioProgram;
 import sg.edu.nus.iss.phoenix.user.android.ui.UserScreen;
 
@@ -16,6 +17,8 @@ public class MainController {
     private static Application app = null;
     private String username;
     private MainScreen mainScreen;
+    private ProgramSlot psSelected;
+    private RadioProgram radioProgramSelected;
 
     public static Application getApp() {
         return app;
@@ -66,13 +69,25 @@ public class MainController {
     public void selectMaintainSchedule() {
         // This is the placeholder for starting the Maintain Schedule use case.
         // At present, it ii used to test the invocation of  Review Select Radio Program use case.
-        ControlFactory.getReviewSelectProgramController().startUseCase();
+        ControlFactory.getMaintainScheduleController().startUseCase();
     }
 
     // This is a dummy operation to test the invocation of Review Select Radio Program use case.
     public void selectedProgram(RadioProgram rpSelected) {
-        startUseCase(username);
+       // startUseCase(username);
+        radioProgramSelected=rpSelected;
     }
 
+    public RadioProgram selectedProgram(){
+        return radioProgramSelected;
+    }
 
+    // This is a dummy operation to test the invocation of Review Select Radio Program use case.
+    public void selectedSchedule(ProgramSlot psSelected) {
+        this.psSelected = psSelected;
+    }
+
+    public  ProgramSlot selectedSchedule(){
+        return psSelected;
+    }
 }

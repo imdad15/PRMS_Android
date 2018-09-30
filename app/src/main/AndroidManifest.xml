@@ -16,7 +16,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="sg.edu.nus.iss.phoenix">
 
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-feature android:name="android.hardware.location.gps" />
 
@@ -41,6 +40,12 @@
         <activity android:name=".radioprogram.android.ui.ReviewSelectProgramScreen" />
         <activity android:name=".user.android.ui.UserListScreen" />
         <activity android:name=".user.android.ui.UserScreen" />
+        <activity android:name=".maintainschedule.android.ui.ScheduleListScreen" />
+        <activity android:name=".maintainschedule.android.ui.ScheduleScreen" />
+        <activity android:name=".maintainschedule.android.ui.AnnualListScreen" />
+        <activity android:name=".maintainschedule.android.ui.WeeklyListScreen" />
+        <activity android:name=".maintainschedule.android.ui.ReviewSelectScheduleScreen" />
+        <activity android:name=".maintainschedule.android.ui.PopulateScreen" />
     </application>
 
 </manifest>

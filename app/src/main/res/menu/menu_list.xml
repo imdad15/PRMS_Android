@@ -8,4 +8,11 @@
         android:title="@string/action_view"
 
         app:showAsAction="always" />
+
+    <item
+    android:id="@+id/action_populate"
+    android:title="Populate Schedule"
+
+    app:showAsAction="always" />
+
 </menu>
