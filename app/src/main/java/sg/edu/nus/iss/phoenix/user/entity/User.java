@@ -109,6 +109,8 @@ public class User {
 
     public void setSiteLink(String siteLink) {
         this.siteLink = siteLink;
+    }
+
     /**
      * setAll allows to set all persistent variables in one method call. This is
      * useful, when all data is available and it is needed to set the initial

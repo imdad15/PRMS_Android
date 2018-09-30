@@ -49,7 +49,6 @@ public class ControlFactory {
             reviewSelectUserController = new ReviewSelectUserController();
         return reviewSelectUserController;
     }
-}
 
     public static MaintainScheduleController getMaintainScheduleController(){
         if(maintainScheduleController== null)
