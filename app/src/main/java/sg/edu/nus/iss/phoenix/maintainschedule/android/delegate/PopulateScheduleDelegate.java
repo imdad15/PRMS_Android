@@ -66,8 +66,7 @@ public class PopulateScheduleDelegate extends AsyncTask<String,Void,Boolean> {
 
     @Override
     protected void onPostExecute(Boolean result) {
-
-
+        maintainScheduleController.notifyPopulated(result);
     }
 
 

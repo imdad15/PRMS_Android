@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import sg.edu.nus.iss.phoenix.R;
 import sg.edu.nus.iss.phoenix.core.android.controller.ControlFactory;
@@ -44,8 +45,11 @@ public class PopulateScreen extends AppCompatActivity  {
         spinner_4 = (Spinner)findViewById(R.id.ToWeek);
         spinner_4.setAdapter(adapter2);
 
+    }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
     @Override
@@ -73,8 +77,7 @@ public class PopulateScreen extends AppCompatActivity  {
 
             // Respond to a click on the "Cancel" menu option
             case R.id.action_cancel:
-                Log.v( "PopulateScreen","Canceling creating/editing populate schedule...");
-                ControlFactory.getMaintainScheduleController().selectCancelCreatePopulateSchedule();
+                onBackPressed();
                 return true;
         }
 
@@ -85,6 +88,15 @@ public class PopulateScreen extends AppCompatActivity  {
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
+        ControlFactory.getMaintainScheduleController().onDisplayPopulate(this);
     }
 
+    public void notifyPopulated(Boolean isSuccess) {
+        if (isSuccess){
+            Toast.makeText(this, "Saved to schedule", Toast.LENGTH_SHORT).show();
+            finish();
+        } else {
+            Toast.makeText(this, "Could not save. Please try again!", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

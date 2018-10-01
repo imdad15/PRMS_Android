@@ -1,10 +1,7 @@
 package sg.edu.nus.iss.phoenix.maintainschedule.android.controller;
 
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.text.TextUtils;
-import android.util.Log;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -15,6 +12,7 @@ import sg.edu.nus.iss.phoenix.maintainschedule.android.delegate.DeleteScheduleDe
 import sg.edu.nus.iss.phoenix.maintainschedule.android.delegate.ModifyScheduleDelegate;
 import sg.edu.nus.iss.phoenix.maintainschedule.android.delegate.PopulateScheduleDelegate;
 import sg.edu.nus.iss.phoenix.maintainschedule.android.delegate.RetrieveScheduleDelegate;
+import sg.edu.nus.iss.phoenix.maintainschedule.android.ui.PopulateScreen;
 import sg.edu.nus.iss.phoenix.maintainschedule.android.ui.ScheduleListScreen;
 import sg.edu.nus.iss.phoenix.maintainschedule.android.ui.ScheduleScreen;
 import sg.edu.nus.iss.phoenix.maintainschedule.entity.ProgramSlot;
@@ -25,8 +23,9 @@ public class MaintainScheduleController {
     // Tag for logging.
     private static final String TAG = MaintainScheduleController.class.getName();
 
-    private ScheduleListScreen scheduleListScreen;
-    private ScheduleScreen scheduleScreen;
+    private ScheduleListScreen mScheduleListScreen;
+    private ScheduleScreen mScheduleScreen;
+    private PopulateScreen mPopulateScreen;
     private ProgramSlot psedit = null;
     private int year_num =0;
     private int week_num=0;
@@ -38,14 +37,18 @@ public class MaintainScheduleController {
     }
 
     public void onDisplayScheduleList(ScheduleListScreen scheduleListScreen) {
-        this.scheduleListScreen = scheduleListScreen;
+        mScheduleListScreen = scheduleListScreen;
         int yearNum= ControlFactory.getMaintainScheduleController().getYear();
         int weekNum= ControlFactory.getMaintainScheduleController().getWeek();
         new RetrieveScheduleDelegate(this).execute(String.valueOf(yearNum),String.valueOf(weekNum));
     }
 
+    public void onDisplayPopulate(PopulateScreen populateScreen){
+        mPopulateScreen = populateScreen;
+    }
+
     public void schedulesRetrieved(List<ProgramSlot> programSlots) {
-        scheduleListScreen.showSchedules(programSlots);
+        mScheduleListScreen.showSchedules(programSlots);
     }
 
     public void selectCreateSchedule() {
@@ -61,7 +64,7 @@ public class MaintainScheduleController {
     }
 
     public void onDisplayProgram(ScheduleScreen maintainScheduleScreen) {
-        this.scheduleScreen = maintainScheduleScreen;
+        this.mScheduleScreen = maintainScheduleScreen;
         String action = maintainScheduleScreen.getIntent().getAction();
         if(!TextUtils.isEmpty(action) && action.equals("Copy")){
             maintainScheduleScreen.setCopiedData();
@@ -69,7 +72,7 @@ public class MaintainScheduleController {
             if (psedit == null)
                 maintainScheduleScreen.createProgramSlot();
             else
-                scheduleScreen.editSchedule(psedit);
+                mScheduleScreen.editSchedule(psedit);
         }
     }
 
@@ -137,7 +140,11 @@ public class MaintainScheduleController {
         week_num = week;
     }
 
-    public void snotifyUpdate(Boolean isSuccess) {
-        scheduleScreen.notifyUpdate(isSuccess);
+    public void notifyUpdate(Boolean isSuccess) {
+        mScheduleScreen.notifyUpdate(isSuccess);
+    }
+
+    public void notifyPopulated(Boolean isSuccess) {
+        mPopulateScreen.notifyPopulated(isSuccess);
     }
 }

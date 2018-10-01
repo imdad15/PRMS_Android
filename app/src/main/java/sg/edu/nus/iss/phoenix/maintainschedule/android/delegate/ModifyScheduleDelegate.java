@@ -15,7 +15,6 @@ import java.net.URL;
 
 import sg.edu.nus.iss.phoenix.maintainschedule.android.controller.MaintainScheduleController;
 import sg.edu.nus.iss.phoenix.maintainschedule.entity.ProgramSlot;
-import sg.edu.nus.iss.phoenix.user.entity.Users;
 
 import static sg.edu.nus.iss.phoenix.core.android.delegate.DelegateHelper.PRMS_BASE_URL_MAINTAIN_SCHEDULE;
 
@@ -91,7 +90,7 @@ public class ModifyScheduleDelegate extends AsyncTask<ProgramSlot,Void,Boolean> 
 
     @Override
     protected void onPostExecute(Boolean isSuccess){
-        maintainScheduleController.snotifyUpdate(isSuccess);
+        maintainScheduleController.notifyUpdate(isSuccess);
     }
 
 }
