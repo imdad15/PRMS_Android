@@ -54,17 +54,16 @@ public class UserScreen extends AppCompatActivity {
     CheckBox showPassword;
 
 
-    String roleHolder = "" ;
+    String roleHolder = "";
 
     boolean isEdit;
 
     SimpleDateFormat mDateFormatter;
 
 
+    ListView userRolesView;
 
-    ListView userRolesView ;
-
-    SparseBooleanArray sparseBooleanArray ;
+    SparseBooleanArray sparseBooleanArray;
 
     String[] roles = null;
 
@@ -80,22 +79,19 @@ public class UserScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_screen);
-        userRolesView = (ListView) findViewById(R.id.rolesView) ;
+        userRolesView = (ListView) findViewById(R.id.rolesView);
 
         roles = getResources().getStringArray(R.array.user_roles);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>
                 (this,
                         android.R.layout.simple_list_item_multiple_choice,
-                        android.R.id.text1, roles  );
+                        android.R.id.text1, roles);
 
 
         userRolesView.setAdapter(adapter);
-
-
         userIdText = (EditText) findViewById(R.id.user_id_text);
-        usernameText = (EditText)findViewById(R.id.user_name_text);
-
+        usernameText = (EditText) findViewById(R.id.user_name_text);
         addressLabel = (TextView) findViewById(R.id.addresslabel);
         addressText = (EditText) findViewById(R.id.address_text);
         passwordText = (EditText) findViewById(R.id.password_text);
@@ -106,55 +102,38 @@ public class UserScreen extends AppCompatActivity {
         showPassword = (CheckBox) findViewById(R.id.showpassword);
 
         mDateFormatter = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
-
         setListeners();
-
-
     }
 
-    public void setListeners()
-    {
-        userRolesView.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
+    public void setListeners() {
+        userRolesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // TODO Auto-generated method stub
 
                 sparseBooleanArray = userRolesView.getCheckedItemPositions();
-
-
                 roleHolder = "";
-                int i = 0 ;
+                int i = 0;
 
                 while (i < sparseBooleanArray.size()) {
-
                     if (sparseBooleanArray.valueAt(i)) {
-
-                        if(roleHolder != "")
-                        {
-                            roleHolder = roleHolder + "," ;
+                        if (roleHolder != "") {
+                            roleHolder = roleHolder + ",";
                         }
-                        roleHolder += roles [ sparseBooleanArray.keyAt(i) ].toLowerCase() + "";
-
+                        roleHolder += roles[sparseBooleanArray.keyAt(i)].toLowerCase() + "";
                     }
-
-                    i++ ;
+                    i++;
                 }
 
                 roleHolder = roleHolder.replaceAll("(,)*$", "");
 
-                if(roleHolder.contains("presenter"))
-                {
+                if (roleHolder.contains("presenter")) {
                     addressLabel.setVisibility(View.VISIBLE);
                     addressText.setVisibility(View.VISIBLE);
                     dojLabel.setVisibility(View.VISIBLE);
                     dojText.setVisibility(View.VISIBLE);
                     siteLinkText.setVisibility(View.VISIBLE);
                     siteLinkLabel.setVisibility(View.VISIBLE);
-                }
-
-                else if(roleHolder.contains("producer"))
-                {
+                } else if (roleHolder.contains("producer")) {
                     addressLabel.setVisibility(View.VISIBLE);
                     addressText.setVisibility(View.VISIBLE);
                     dojLabel.setVisibility(View.VISIBLE);
@@ -162,9 +141,7 @@ public class UserScreen extends AppCompatActivity {
                     siteLinkText.setVisibility(View.GONE);
                     siteLinkLabel.setVisibility(View.GONE);
 
-                }
-                else
-                {
+                } else {
                     addressText.setVisibility(View.GONE);
                     addressLabel.setVisibility(View.GONE);
                     dojText.setVisibility(View.GONE);
@@ -172,10 +149,6 @@ public class UserScreen extends AppCompatActivity {
                     siteLinkText.setVisibility(View.GONE);
                     siteLinkLabel.setVisibility(View.GONE);
                 }
-
-
-                // Toast.makeText(UserScreen.this, "ListView Selected Values = " + roleHolder, Toast.LENGTH_LONG).show();
-
             }
         });
 
@@ -183,15 +156,11 @@ public class UserScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(v instanceof CheckBox)
-                {
-                    if(((CheckBox)v).isChecked())
-                    {
+                if (v instanceof CheckBox) {
+                    if (((CheckBox) v).isChecked()) {
                         passwordText.setInputType(InputType.TYPE_CLASS_TEXT);
                         passwordText.setEnabled(Boolean.TRUE);
-                    }
-                    else
-                    {
+                    } else {
                         passwordText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                         passwordText.setEnabled(Boolean.FALSE);
                     }
@@ -200,10 +169,7 @@ public class UserScreen extends AppCompatActivity {
         };
         showPassword.setOnClickListener(checkboxListener);
 
-
     }
-
-
 
 
     public boolean isEdit() {
@@ -214,10 +180,8 @@ public class UserScreen extends AppCompatActivity {
         isEdit = edit;
     }
 
-    private void setUserRoles()
-    {
-        if(userList.size()> 0 )
-        {
+    private void setUserRoles() {
+        if (userList.size() > 0) {
             User user = userList.get(0);
 
             usernameText.setText(user.getName());
@@ -228,32 +192,27 @@ public class UserScreen extends AppCompatActivity {
             siteLinkText.setText(user.getSiteLink());
 
             Log.v("User List data", user.getRoles().toString());
-            if(user.getRoles()!=null) {
+            if (user.getRoles() != null) {
                 roleHolder = "";
                 for (int i = 0; i < roles.length; i++) {
                     if (user.getRoles().get(0).getRole().contains(roles[i].toLowerCase())) {
                         userRolesView.setItemChecked(i, true);
 
-                        if(roleHolder != "")
-                        {
-                            roleHolder = roleHolder + "," ;
+                        if (roleHolder != "") {
+                            roleHolder = roleHolder + ",";
                         }
-                        roleHolder += roles [i].toLowerCase();
+                        roleHolder += roles[i].toLowerCase();
                     }
                 }
             }
-            if(roleHolder.contains("presenter"))
-            {
+            if (roleHolder.contains("presenter")) {
                 addressLabel.setVisibility(View.VISIBLE);
                 addressText.setVisibility(View.VISIBLE);
                 dojLabel.setVisibility(View.VISIBLE);
                 dojText.setVisibility(View.VISIBLE);
                 siteLinkText.setVisibility(View.VISIBLE);
                 siteLinkLabel.setVisibility(View.VISIBLE);
-            }
-
-            else if(roleHolder.contains("producer"))
-            {
+            } else if (roleHolder.contains("producer")) {
                 addressLabel.setVisibility(View.VISIBLE);
                 addressText.setVisibility(View.VISIBLE);
                 dojLabel.setVisibility(View.VISIBLE);
@@ -261,9 +220,7 @@ public class UserScreen extends AppCompatActivity {
                 siteLinkText.setVisibility(View.GONE);
                 siteLinkLabel.setVisibility(View.GONE);
 
-            }
-            else
-            {
+            } else {
                 addressText.setVisibility(View.GONE);
                 addressLabel.setVisibility(View.GONE);
                 dojText.setVisibility(View.GONE);
@@ -273,7 +230,6 @@ public class UserScreen extends AppCompatActivity {
             }
 
         }
-
 
     }
 
@@ -302,10 +258,6 @@ public class UserScreen extends AppCompatActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-
-            MenuItem menuItem = menu.findItem(R.id.action_copy);
-            menuItem.setVisible(false);
-
         return true;
     }
 
@@ -316,7 +268,7 @@ public class UserScreen extends AppCompatActivity {
             // Respond to a click on the "Save" menu option
             case R.id.action_save:
                 // Save radio program.
-                if(validate()) {
+                if (validate()) {
                     if (userList != null && userList.size() > 0 && isEdit()) {
 
                         ControlFactory.getUserController().updateUser(getUserData());
@@ -343,7 +295,7 @@ public class UserScreen extends AppCompatActivity {
         return true;
     }
 
-    private DatePickerDialog getDialog(){
+    private DatePickerDialog getDialog() {
         Calendar calendar = Calendar.getInstance();
         DatePickerDialog dialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -352,7 +304,7 @@ public class UserScreen extends AppCompatActivity {
                 dojText.setText(mDateFormatter.format(newDate.getTime()));
                 ControlFactory.getMainController().hideKeyboard(UserScreen.this);
             }
-        },calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         dialog.getDatePicker().setMaxDate(System.currentTimeMillis());
         return dialog;
     }
@@ -360,20 +312,18 @@ public class UserScreen extends AppCompatActivity {
     private View.OnFocusChangeListener mDateFocusListener = new View.OnFocusChangeListener() {
         @Override
         public void onFocusChange(View v, boolean hasFocus) {
-            if(hasFocus) {
+            if (hasFocus) {
                 getDialog().show();
             }
         }
     };
 
-    public User getUserData()
-    {
+    public User getUserData() {
         ArrayList<Role> roles = new ArrayList<>();
         roleHolder = roleHolder.replaceAll("(,)*$", "");
-        Log.v("ROLE HOLDER",roleHolder);
+        Log.v("ROLE HOLDER", roleHolder);
         String[] roleholders = roleHolder.split(",");
-        for(int i=0;  i < roleholders.length; i++)
-        {
+        for (int i = 0; i < roleholders.length; i++) {
             Role role = new Role();
             role.setRole(roleholders[i]);
             roles.add(role);
@@ -390,10 +340,9 @@ public class UserScreen extends AppCompatActivity {
         return user;
     }
 
-    public boolean validate()
-    {
+    public boolean validate() {
 
-        if(roleHolder=="") {
+        if (roleHolder == "") {
             Toast.makeText(UserScreen.this, "Atleast one role should be selected", Toast.LENGTH_LONG).show();
             return false;
         }
