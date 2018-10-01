@@ -2,7 +2,7 @@ package sg.edu.nus.iss.phoenix.core.android.delegate;
 
 public class DelegateHelper {
     // RESTful parameters.
-    public static final String PRMS_BASE_URL = "http://172.17.39.52:8080/phoenix/rest/";
+    public static final String PRMS_BASE_URL = "http://10.104.128.25:8080/phoenix/rest/";
     public final static String PRMS_BASE_URL_MAINTAIN_SCHEDULE = PRMS_BASE_URL + "schedule";
     public final static String PRMS_BASE_URL_SCHEDULE = PRMS_BASE_URL + "scheduleprogram";
     public final static String PRMS_BASE_URL_USERS = PRMS_BASE_URL +"user";

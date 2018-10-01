@@ -56,9 +56,10 @@ public class ScheduleListScreen extends AppCompatActivity {
                 ProgramSlot ps = (ProgramSlot) adapterView.getItemAtPosition(position);
                 selectedPS = ps;
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                // your stuff
+                //Not in use
             }
         });
     }

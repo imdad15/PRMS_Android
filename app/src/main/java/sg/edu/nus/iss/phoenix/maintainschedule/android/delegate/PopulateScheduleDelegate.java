@@ -14,6 +14,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import sg.edu.nus.iss.phoenix.maintainschedule.android.controller.MaintainScheduleController;
+import sg.edu.nus.iss.phoenix.user.entity.Users;
+
 import static sg.edu.nus.iss.phoenix.core.android.delegate.DelegateHelper.PRMS_BASE_URL_MAINTAIN_SCHEDULE;
 
 public class PopulateScheduleDelegate extends AsyncTask<String,Void,Boolean> {
@@ -29,7 +31,7 @@ public class PopulateScheduleDelegate extends AsyncTask<String,Void,Boolean> {
     @Override
     protected Boolean doInBackground(String... params) {
 
-        String path = "populate"+"?"+"fromYear="+params[0]+"&fromWeek="+params[1]+"&toYear="+params[2]+"&toWeek="+params[3];
+        String path = String.format("populate?fromYear=%s&fromWeek=%s&toYear=%s&toWeek=%s", params[0], params[1], params[2], params[3]);
         Uri builtUri = Uri.parse(PRMS_BASE_URL_MAINTAIN_SCHEDULE).buildUpon().build();
         builtUri = Uri.withAppendedPath(builtUri, path).buildUpon().build();
         Log.v(TAG, builtUri.toString());
@@ -38,7 +40,7 @@ public class PopulateScheduleDelegate extends AsyncTask<String,Void,Boolean> {
             url = new URL(builtUri.toString());
         } catch (MalformedURLException e) {
             Log.v(TAG, e.getMessage());
-            return new Boolean(false);
+            return false;
         }
 
 
@@ -59,7 +61,14 @@ public class PopulateScheduleDelegate extends AsyncTask<String,Void,Boolean> {
         } finally {
                 if (httpURLConnection != null) httpURLConnection.disconnect();
         }
-        return new Boolean(success);
+        return success;
     }
+
+    @Override
+    protected void onPostExecute(Boolean result) {
+
+
+    }
+
 
 }

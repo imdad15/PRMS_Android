@@ -85,7 +85,13 @@ public class ModifyScheduleDelegate extends AsyncTask<ProgramSlot,Void,Boolean> 
             }
             if (httpURLConnection != null) httpURLConnection.disconnect();
         }
-        return new Boolean(success);
+        return success;
 
     }
+
+    @Override
+    protected void onPostExecute(Boolean isSuccess){
+        maintainScheduleController.snotifyUpdate(isSuccess);
+    }
+
 }

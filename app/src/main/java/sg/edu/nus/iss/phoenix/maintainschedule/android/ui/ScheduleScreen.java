@@ -13,9 +13,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import sg.edu.nus.iss.phoenix.R;
-import sg.edu.nus.iss.phoenix.authenticate.android.ui.LoginScreen;
 import sg.edu.nus.iss.phoenix.core.android.controller.ControlFactory;
 import sg.edu.nus.iss.phoenix.maintainschedule.entity.ProgramSlot;
 import sg.edu.nus.iss.phoenix.radioprogram.android.ui.ReviewSelectProgramScreen;
@@ -31,7 +31,6 @@ public class ScheduleScreen extends AppCompatActivity {
     private EditText mRPNameEditText;
     private EditText mProducerNameEditText;
     private EditText mPresenterNameEditText;
-    private EditText mRPDescEditText;
     private EditText mDurationEditText;
     private EditText mDateEditText;
     private EditText mStartTimeEditText;
@@ -59,7 +58,6 @@ public class ScheduleScreen extends AppCompatActivity {
         mDateEditText = (EditText) findViewById(R.id.maintain_schedule_program_date_text_view);
         mStartTimeEditText = (EditText) findViewById(R.id.maintain_schedule_program_start_time_text_view);
         mAssignedByEditText = (EditText) findViewById(R.id.maintain_schedule_assigned_by_text_view);
-
 
         // Keep the KeyListener for name EditText so as to enable editing after disabling it.
         mRPNameEditTextKeyListener = mRPNameEditText.getKeyListener();
@@ -91,13 +89,6 @@ public class ScheduleScreen extends AppCompatActivity {
         mSelectProducerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //    ControlFactory.getReviewSelectPresenterProducer().startUseCase();
-                //    Producer producer = ControlFactory.getMainController().selectedProducer();
-                //    if (producer != null) {
-                //        mProducerNameEditText.setText(producer.getProducerName());
-                //        mProducerNameEditText.setFocusable(false);
-                //    }
-
                 reviewSelectUser(REQUEST_CODE_PRODUCER);
             }
         });
@@ -204,8 +195,7 @@ public class ScheduleScreen extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Log.v(TAG, "Canceling creating/editing program slots...");
-        ControlFactory.getMaintainScheduleController().selectCancelCreateEditSchedule();
+        super.onBackPressed();
     }
 
     public void createProgramSlot() {
@@ -243,8 +233,8 @@ public class ScheduleScreen extends AppCompatActivity {
             if (!TextUtils.isEmpty(psedit.getPresenterName())) {
                 mPresenterNameEditText.setText(psedit.getPresenterName(), TextView.BufferType.EDITABLE);
             }
-            if (!TextUtils.isEmpty(psedit.getDuration())) {
-                mDurationEditText.setText(psedit.getDuration(), TextView.BufferType.EDITABLE);
+            if (!TextUtils.isEmpty(psedit.getDate())) {
+                mDateEditText.setText(psedit.getDate(), TextView.BufferType.EDITABLE);
             }
             if (!TextUtils.isEmpty(psedit.getStartTime())) {
                 mStartTimeEditText.setText(psedit.getStartTime(), TextView.BufferType.EDITABLE);
@@ -278,4 +268,12 @@ public class ScheduleScreen extends AppCompatActivity {
         mDurationEditText.setText(intent.getStringExtra("duration"));
     }
 
+    public void notifyUpdate(Boolean isSuccess) {
+        if (isSuccess){
+            Toast.makeText(this, "Update Successfull", Toast.LENGTH_SHORT).show();
+            finish();
+        } else {
+            Toast.makeText(this, "Update failed. Please try again!", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

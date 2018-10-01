@@ -7,10 +7,10 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import sg.edu.nus.iss.phoenix.R;
 import sg.edu.nus.iss.phoenix.core.android.controller.ControlFactory;
@@ -52,8 +52,10 @@ public class WeeklyListScreen extends AppCompatActivity {
         // Inflate the menu options from the res/menu/menu_editor.xml file.
         // This adds menu items to the app bar.
         getMenuInflater().inflate(R.menu.menu_list, menu);
-        MenuItem menuItem = menu.findItem(R.id.action_view);
-        menuItem.setVisible(false);
+        MenuItem itemView = menu.findItem(R.id.action_view);
+        MenuItem itemCopy = menu.findItem(R.id.action_copy);
+        itemView.setVisible(false);
+        itemCopy.setVisible(false);
         return true;
     }
 
@@ -64,11 +66,9 @@ public class WeeklyListScreen extends AppCompatActivity {
         switch (item.getItemId()) {
             // Respond to a click on the "View" menu option
             case R.id.action_populate:
-
                 Intent intent = new Intent(this, PopulateScreen.class);
                 startActivity(intent);
         }
-
         return true;
     }
 

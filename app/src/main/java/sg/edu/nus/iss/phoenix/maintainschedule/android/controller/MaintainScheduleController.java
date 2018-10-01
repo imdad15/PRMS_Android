@@ -4,6 +4,7 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -29,7 +30,6 @@ public class MaintainScheduleController {
     private ProgramSlot psedit = null;
     private int year_num =0;
     private int week_num=0;
-    boolean mCopy = false;
 
     public void startUseCase() {
         psedit = null;
@@ -56,10 +56,7 @@ public class MaintainScheduleController {
 
    public void selectEditProgramSlot(ProgramSlot programSlot) {
         psedit = programSlot;
-        Log.v(TAG, "Editing radio program: " + programSlot.getRadioProgramName() + "...");
-
         Intent intent = new Intent(MainController.getApp(), ScheduleScreen.class);
-
         MainController.displayScreen(intent);
     }
 
@@ -140,11 +137,7 @@ public class MaintainScheduleController {
         week_num = week;
     }
 
-    public void isCopyOperation(boolean val){
-        mCopy=val;
+    public void snotifyUpdate(Boolean isSuccess) {
+        scheduleScreen.notifyUpdate(isSuccess);
     }
-
-
-
-
 }
